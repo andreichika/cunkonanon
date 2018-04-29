@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr 29 02:02:26 2018
-
-@author: deepthisen
 """
 import pandas as pd
 import numpy as np
