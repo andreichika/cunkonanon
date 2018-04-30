@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Apr 29 02:02:26 2018
+
+@author: deepthisen
 """
 import pandas as pd
 import numpy as np
@@ -13,7 +15,7 @@ class Data_Visual:
     def __init__(self,df,vartype):
         self.df=df
         self.vartype=vartype
-        self.mode_=df.mode()
+        self.mode=df.mode()
         self.nuniq=len(df.unique())
         self.length=len(df)
     
@@ -35,9 +37,26 @@ class nomi_visual(Data_Visual):
         plt.axis('equal')
         plt.tight_layout()
         plt.show()
-
+    def frequency(self):
+        df=self.df
+        array_uniq=df.unique()
+        occur=[]
+        i=0
+        for item in array_uniq:
+            occur.append(df.loc[df==item].count())
+            i+=1
+        freq=list(np.array(occur)/self.length)
+        print("Frequency Table")
+        print("***************")
+        #print("Item    Frequency    Percent Freq")
+        print("{0:<15s}{1:>15s}{2:>15s}".format("Item","Frequency","Percent Freq"))
+        i=0
+        for item in array_uniq:
+            print("{0:<15s}{1:>15d}{2:>15.2f}".format(str(item),occur[i],freq[i]))
+            i+=1
+        
 class inter_visual(Data_Visual):   
-    fact=2
+    fact=1
     def __init__(self,df,vartype):
         super().__init__(df,vartype)
         self.mean=df.mean()
